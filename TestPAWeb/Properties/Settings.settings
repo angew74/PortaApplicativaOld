@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TestPAWeb.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TestPAWeb_EventiWS_Eventi" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/pa/pri/verifiche/eventi.asmx</Value>
+    </Setting>
+    <Setting Name="TestPAWeb_WebReference_NVA" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.173.2.131/PA/papublic/pri/Verifiche/nva.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

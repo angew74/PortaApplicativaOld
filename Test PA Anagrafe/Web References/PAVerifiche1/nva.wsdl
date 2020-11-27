@@ -1,0 +1,1363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://servizi.comune.roma.it/verificheanagrafiche" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://servizi.comune.roma.it/verificheanagrafiche" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Interrogazione Anagrafe comunale</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://servizi.comune.roma.it/verificheanagrafiche">
+      <s:element name="VerificaAnagrafica">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaAnagraficaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaAnagraficaResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogHeader" type="tns:LogHeader" />
+      <s:complexType name="LogHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LogGuid" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="VerificaAnagraficaSuper">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaAnagraficaSuperResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaAnagraficaSuperResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaCRI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="AnnoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="AnnoPratica" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="NumeroPratica" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaCRIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaCRIResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaPerm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="AnnoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="AnnoPratica" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="NumeroPratica" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumAttestato" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NumPermesso" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaPermResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaPermResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaLeggeRutelli">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaLeggeRutelliResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaLeggeRutelliResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaAnagraficaEstesa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AnnoIniziale" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="AnnoFinale" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="Patern" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Matern" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Domicilio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ComuneNascita" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaAnagraficaEstesaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaAnagraficaEstesaResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaDocumenti">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaDocumentiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaDocumentiResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaCartaIdent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaCartaIdentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaCartaIdentResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaElettorale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaElettoraleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaElettoraleResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaLevaMilitare">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaLevaMilitareResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaLevaMilitareResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaSitFamigliaConv">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaSitFamigliaConvResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaSitFamigliaConvResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaStatoFamigliaConv">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaStatoFamigliaConvResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaStatoFamigliaConvResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaStoricaDocumenti">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaStoricaDocumentiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaStoricaDocumentiResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaStoricaIndividuo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaStoricaIndividuoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaStoricaIndividuoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaVaccinazioni">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaVaccinazioniResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaVaccinazioniResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaDomiciliatiperIndirizzo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="CodiceVia" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DenominazioneVia" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Numero" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lettera" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lotto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Palazzina" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Km" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Scala" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Piano" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Interno" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaDomiciliatiperIndirizzoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaDomiciliatiperIndirizzoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaDomiciliatiperIndirizzoeFamiglia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="CodiceVia" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DenominazioneVia" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Numero" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lettera" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lotto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Palazzina" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Km" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Scala" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Piano" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Interno" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaDomiciliatiperIndirizzoeFamigliaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaDomiciliatiperIndirizzoeFamigliaResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaDomXRangeCivici">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="TipoRange" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="CodiceVia" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DenominazioneVia" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="NumeroDa" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="NumeroA" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="LottoDa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LottoA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalazzinaDa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PalazzinaA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KmDa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KmA" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaDomXRangeCiviciResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaDomXRangeCiviciResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaCartaId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Carta" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaCartaIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaCartaIdResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaStoricoFamigliaXData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoRif" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseRif" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="AnnoRif" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaStoricoFamigliaXDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaStoricoFamigliaXDataResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaNullaOstaCI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TipoInterr" type="s:unsignedByte" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceIndividuale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodiceFiscale" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sesso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cognome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GiornoNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="MeseNascita" type="s:unsignedByte" />
+            <s:element minOccurs="1" maxOccurs="1" name="annoNascita" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceLevel" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaNullaOstaCIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaNullaOstaCIResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="VerificaAnagraficaSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaAnagrafica" />
+  </wsdl:message>
+  <wsdl:message name="VerificaAnagraficaSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaAnagraficaResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaAnagraficaLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaAnagraficaSuperSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaAnagraficaSuper" />
+  </wsdl:message>
+  <wsdl:message name="VerificaAnagraficaSuperSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaAnagraficaSuperResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaAnagraficaSuperLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCRISoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaCRI" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCRISoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaCRIResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCRILogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaPermSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaPerm" />
+  </wsdl:message>
+  <wsdl:message name="VerificaPermSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaPermResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaPermLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaLeggeRutelliSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaLeggeRutelli" />
+  </wsdl:message>
+  <wsdl:message name="VerificaLeggeRutelliSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaLeggeRutelliResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaLeggeRutelliLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaAnagraficaEstesaSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaAnagraficaEstesa" />
+  </wsdl:message>
+  <wsdl:message name="VerificaAnagraficaEstesaSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaAnagraficaEstesaResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaAnagraficaEstesaLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDocumentiSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaDocumenti" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDocumentiSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaDocumentiResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDocumentiLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCartaIdentSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaCartaIdent" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCartaIdentSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaCartaIdentResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCartaIdentLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaElettoraleSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaElettorale" />
+  </wsdl:message>
+  <wsdl:message name="VerificaElettoraleSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaElettoraleResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaElettoraleLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaLevaMilitareSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaLevaMilitare" />
+  </wsdl:message>
+  <wsdl:message name="VerificaLevaMilitareSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaLevaMilitareResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaLevaMilitareLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaSitFamigliaConvSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaSitFamigliaConv" />
+  </wsdl:message>
+  <wsdl:message name="VerificaSitFamigliaConvSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaSitFamigliaConvResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaSitFamigliaConvLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStatoFamigliaConvSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaStatoFamigliaConv" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStatoFamigliaConvSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaStatoFamigliaConvResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStatoFamigliaConvLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStoricaDocumentiSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaStoricaDocumenti" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStoricaDocumentiSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaStoricaDocumentiResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStoricaDocumentiLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStoricaIndividuoSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaStoricaIndividuo" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStoricaIndividuoSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaStoricaIndividuoResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStoricaIndividuoLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaVaccinazioniSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaVaccinazioni" />
+  </wsdl:message>
+  <wsdl:message name="VerificaVaccinazioniSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaVaccinazioniResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaVaccinazioniLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDomiciliatiperIndirizzoSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaDomiciliatiperIndirizzo" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDomiciliatiperIndirizzoSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaDomiciliatiperIndirizzoResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDomiciliatiperIndirizzoLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDomiciliatiperIndirizzoeFamigliaSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaDomiciliatiperIndirizzoeFamiglia" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDomiciliatiperIndirizzoeFamigliaSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaDomiciliatiperIndirizzoeFamigliaResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDomiciliatiperIndirizzoeFamigliaLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDomXRangeCiviciSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaDomXRangeCivici" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDomXRangeCiviciSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaDomXRangeCiviciResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaDomXRangeCiviciLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCartaIdSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaCartaId" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCartaIdSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaCartaIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaCartaIdLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStoricoFamigliaXDataSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaStoricoFamigliaXData" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStoricoFamigliaXDataSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaStoricoFamigliaXDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaStoricoFamigliaXDataLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="VerificaNullaOstaCISoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaNullaOstaCI" />
+  </wsdl:message>
+  <wsdl:message name="VerificaNullaOstaCISoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaNullaOstaCIResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaNullaOstaCILogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:portType name="NVASoap">
+    <wsdl:operation name="VerificaAnagrafica">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Effettua una verifica anagrafica completa</wsdl:documentation>
+      <wsdl:input message="tns:VerificaAnagraficaSoapIn" />
+      <wsdl:output message="tns:VerificaAnagraficaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaAnagraficaSuper">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Effettua una verifica anagrafica completa</wsdl:documentation>
+      <wsdl:input message="tns:VerificaAnagraficaSuperSoapIn" />
+      <wsdl:output message="tns:VerificaAnagraficaSuperSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCRI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Interrogazione Dati CRI</wsdl:documentation>
+      <wsdl:input message="tns:VerificaCRISoapIn" />
+      <wsdl:output message="tns:VerificaCRISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaPerm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Interrogazione Dati Documenti di Soggiorno</wsdl:documentation>
+      <wsdl:input message="tns:VerificaPermSoapIn" />
+      <wsdl:output message="tns:VerificaPermSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaLeggeRutelli">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Interrogazione per Legge Rutelli</wsdl:documentation>
+      <wsdl:input message="tns:VerificaLeggeRutelliSoapIn" />
+      <wsdl:output message="tns:VerificaLeggeRutelliSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaAnagraficaEstesa">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricerca x arco temporale</wsdl:documentation>
+      <wsdl:input message="tns:VerificaAnagraficaEstesaSoapIn" />
+      <wsdl:output message="tns:VerificaAnagraficaEstesaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDocumenti">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Interrogazione documenti</wsdl:documentation>
+      <wsdl:input message="tns:VerificaDocumentiSoapIn" />
+      <wsdl:output message="tns:VerificaDocumentiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCartaIdent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Individuale Carta di Identità</wsdl:documentation>
+      <wsdl:input message="tns:VerificaCartaIdentSoapIn" />
+      <wsdl:output message="tns:VerificaCartaIdentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaElettorale">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Posizione Elettorale</wsdl:documentation>
+      <wsdl:input message="tns:VerificaElettoraleSoapIn" />
+      <wsdl:output message="tns:VerificaElettoraleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaLevaMilitare">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Posizione Servizio Militare</wsdl:documentation>
+      <wsdl:input message="tns:VerificaLevaMilitareSoapIn" />
+      <wsdl:output message="tns:VerificaLevaMilitareSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaSitFamigliaConv">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Situazione Famiglia e Convivenza</wsdl:documentation>
+      <wsdl:input message="tns:VerificaSitFamigliaConvSoapIn" />
+      <wsdl:output message="tns:VerificaSitFamigliaConvSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStatoFamigliaConv">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Stato di Famiglia e Convivenza</wsdl:documentation>
+      <wsdl:input message="tns:VerificaStatoFamigliaConvSoapIn" />
+      <wsdl:output message="tns:VerificaStatoFamigliaConvSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStoricaDocumenti">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Storico Documenti</wsdl:documentation>
+      <wsdl:input message="tns:VerificaStoricaDocumentiSoapIn" />
+      <wsdl:output message="tns:VerificaStoricaDocumentiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStoricaIndividuo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Storico Individuo</wsdl:documentation>
+      <wsdl:input message="tns:VerificaStoricaIndividuoSoapIn" />
+      <wsdl:output message="tns:VerificaStoricaIndividuoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaVaccinazioni">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Vaccinazioni</wsdl:documentation>
+      <wsdl:input message="tns:VerificaVaccinazioniSoapIn" />
+      <wsdl:output message="tns:VerificaVaccinazioniSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDomiciliatiperIndirizzo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricerca Domiciliati per indirizzo</wsdl:documentation>
+      <wsdl:input message="tns:VerificaDomiciliatiperIndirizzoSoapIn" />
+      <wsdl:output message="tns:VerificaDomiciliatiperIndirizzoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDomiciliatiperIndirizzoeFamiglia">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricerca Domiciliati per indirizzo e Famiglia</wsdl:documentation>
+      <wsdl:input message="tns:VerificaDomiciliatiperIndirizzoeFamigliaSoapIn" />
+      <wsdl:output message="tns:VerificaDomiciliatiperIndirizzoeFamigliaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDomXRangeCivici">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricerca Domiciliati per intervallo di civici, lotti, palazzi o kilometri</wsdl:documentation>
+      <wsdl:input message="tns:VerificaDomXRangeCiviciSoapIn" />
+      <wsdl:output message="tns:VerificaDomXRangeCiviciSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCartaId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Carta di Identità (ricerca carta)</wsdl:documentation>
+      <wsdl:input message="tns:VerificaCartaIdSoapIn" />
+      <wsdl:output message="tns:VerificaCartaIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStoricoFamigliaXData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Storico di Damiglia con ricerca per data</wsdl:documentation>
+      <wsdl:input message="tns:VerificaStoricoFamigliaXDataSoapIn" />
+      <wsdl:output message="tns:VerificaStoricoFamigliaXDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaNullaOstaCI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Verifica Nulla Osta CartaID</wsdl:documentation>
+      <wsdl:input message="tns:VerificaNullaOstaCISoapIn" />
+      <wsdl:output message="tns:VerificaNullaOstaCISoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NVASoap" type="tns:NVASoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificaAnagrafica">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaAnagrafica" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaAnagraficaLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaAnagraficaSuper">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaAnagraficaSuper" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaAnagraficaSuperLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCRI">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaCRI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaCRILogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaPerm">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaPerm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaPermLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaLeggeRutelli">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaLeggeRutelli" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaLeggeRutelliLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaAnagraficaEstesa">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaAnagraficaEstesa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaAnagraficaEstesaLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDocumenti">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaDocumenti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaDocumentiLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCartaIdent">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaCartaIdent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaCartaIdentLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaElettorale">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaElettorale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaElettoraleLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaLevaMilitare">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaLevaMilitare" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaLevaMilitareLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaSitFamigliaConv">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaSitFamigliaConv" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaSitFamigliaConvLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStatoFamigliaConv">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaStatoFamigliaConv" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaStatoFamigliaConvLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStoricaDocumenti">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaStoricaDocumenti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaStoricaDocumentiLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStoricaIndividuo">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaStoricaIndividuo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaStoricaIndividuoLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaVaccinazioni">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaVaccinazioni" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaVaccinazioniLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDomiciliatiperIndirizzo">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaDomiciliatiperIndirizzo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaDomiciliatiperIndirizzoLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDomiciliatiperIndirizzoeFamiglia">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaDomiciliatiperIndirizzoeFamiglia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaDomiciliatiperIndirizzoeFamigliaLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDomXRangeCivici">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaDomXRangeCivici" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaDomXRangeCiviciLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCartaId">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaCartaId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaCartaIdLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStoricoFamigliaXData">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaStoricoFamigliaXData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaStoricoFamigliaXDataLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaNullaOstaCI">
+      <soap:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaNullaOstaCI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:VerificaNullaOstaCILogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NVASoap12" type="tns:NVASoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificaAnagrafica">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaAnagrafica" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaAnagraficaLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaAnagraficaSuper">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaAnagraficaSuper" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaAnagraficaSuperLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCRI">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaCRI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaCRILogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaPerm">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaPerm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaPermLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaLeggeRutelli">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaLeggeRutelli" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaLeggeRutelliLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaAnagraficaEstesa">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaAnagraficaEstesa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaAnagraficaEstesaLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDocumenti">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaDocumenti" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaDocumentiLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCartaIdent">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaCartaIdent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaCartaIdentLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaElettorale">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaElettorale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaElettoraleLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaLevaMilitare">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaLevaMilitare" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaLevaMilitareLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaSitFamigliaConv">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaSitFamigliaConv" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaSitFamigliaConvLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStatoFamigliaConv">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaStatoFamigliaConv" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaStatoFamigliaConvLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStoricaDocumenti">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaStoricaDocumenti" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaStoricaDocumentiLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStoricaIndividuo">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaStoricaIndividuo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaStoricaIndividuoLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaVaccinazioni">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaVaccinazioni" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaVaccinazioniLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDomiciliatiperIndirizzo">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaDomiciliatiperIndirizzo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaDomiciliatiperIndirizzoLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDomiciliatiperIndirizzoeFamiglia">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaDomiciliatiperIndirizzoeFamiglia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaDomiciliatiperIndirizzoeFamigliaLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaDomXRangeCivici">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaDomXRangeCivici" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaDomXRangeCiviciLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaCartaId">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaCartaId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaCartaIdLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaStoricoFamigliaXData">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaStoricoFamigliaXData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaStoricoFamigliaXDataLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaNullaOstaCI">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/verificheanagrafiche/VerificaNullaOstaCI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:VerificaNullaOstaCILogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NVA">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Interrogazione Anagrafe comunale</wsdl:documentation>
+    <wsdl:port name="NVASoap" binding="tns:NVASoap">
+      <soap:address location="http://localhost/PA/pri/Verifiche/nva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="NVASoap12" binding="tns:NVASoap12">
+      <soap12:address location="http://localhost/PA/pri/Verifiche/nva.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

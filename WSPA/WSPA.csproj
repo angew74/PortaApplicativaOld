@@ -1,0 +1,197 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B8D4E9EF-A478-4944-85E9-D1381880EC6D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WSPA</RootNamespace>
+    <AssemblyName>WSPA</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\..\..\..\Components\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Services2, Version=2.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Windows\assembly\GAC\Microsoft.Web.Services2\2.0.3.0__31bf3856ad364e35\Microsoft.Web.Services2.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Unisys.CdR.RefreshCounters">
+      <HintPath>..\..\..\..\..\..\Components\Unisys.CdR.RefreshCounters.dll</HintPath>
+    </Reference>
+    <Reference Include="Unisys.CdR.Servizi.Log">
+      <HintPath>..\..\..\..\..\..\Components\Unisys.CdR.Servizi.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Unisys.CdR.SOAPUtilities">
+      <HintPath>..\..\..\..\..\..\Components\Unisys.CdR.SOAPUtilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="pri\Verifiche\NVA.asmx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="pri\Verifiche\Condivise.cs" />
+    <Compile Include="pri\Verifiche\GenericVA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="pri\Verifiche\NVA.asmx.cs">
+      <DependentUpon>NVA.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="policyCache.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FaxPec\GestioneIterPratica\FaxPec.Data.UnisysStub\FaxPec.Data.UnisysStub.csproj">
+      <Project>{f0c6fb6b-8a8d-4bd6-86bf-4c5755c678f8}</Project>
+      <Name>FaxPec.Data.UnisysStub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\INASAIA.NET\INASaia.Data.OracleDb\INASaia.Data.OracleDb.csproj">
+      <Project>{617dc295-748a-44b7-ae3b-e3d846425765}</Project>
+      <Name>INASaia.Data.OracleDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\INASAIA.NET\INASaia.DataContracts\INASaia.DataContracts.csproj">
+      <Project>{754bba29-752d-4fed-b165-48c6dc89e79c}</Project>
+      <Name>INASaia.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\INASAIA.NET\INASaia.Model\INASaia.Model.csproj">
+      <Project>{e223afa6-7775-441f-b4db-8c8c9c4b731d}</Project>
+      <Name>INASaia.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\INASAIA.NET\INASaia.ServiceContracts\INASaia.ServiceContracts.csproj">
+      <Project>{bea3030b-28c7-4791-b160-a8dc5ca442be}</Project>
+      <Name>INASaia.ServiceContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\INASAIA.NET\INASaia.Services\INASaia.Services.csproj">
+      <Project>{ab282bef-1137-4fdc-baa1-d33573317f2c}</Project>
+      <Name>INASaia.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\UnisysLibrary\Com.Unisys.Logging\Com.Unisys.Logging.csproj">
+      <Project>{f35a26ae-e79f-4fc2-832a-01f6f4550128}</Project>
+      <Name>Com.Unisys.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IntegrazioneAnagrafe\Unisys.CdR.CacheAnagrafe\Unisys.CdR.CacheAnagrafe.vbproj">
+      <Project>{43d8126b-9c8a-4991-a93d-c23fbd20e0e3}</Project>
+      <Name>Unisys.CdR.CacheAnagrafe</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IntegrazioneAnagrafe\Unisys.CdR.OpenTI\Unisys.CdR.OpenTI.vbproj">
+      <Project>{142022d8-b853-4c9e-ab93-3504969a9f26}</Project>
+      <Name>Unisys.CdR.OpenTI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IntegrazioneAnagrafe\Unisys.CdR.VerificheAnagrafiche\Unisys.CdR.VerificheAnagrafiche.vbproj">
+      <Project>{46eb6f5d-4e53-4650-a88f-03208282eb43}</Project>
+      <Name>Unisys.CdR.VerificheAnagrafiche</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PA Base Solution\Unisys.CdR.CustomProfile\Unisys.CdR.CustomProfile.vbproj">
+      <Project>{be3e8c5d-29f4-4f80-9e3e-4fce59f1b50d}</Project>
+      <Name>Unisys.CdR.CustomProfile</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>7190</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:7190/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Questo progetto fa riferimento a uno o più pacchetti NuGet che non sono presenti in questo computer. Usare lo strumento di ripristino dei pacchetti NuGet per scaricarli. Per altre informazioni, vedere http://go.microsoft.com/fwlink/?LinkID=322105. Il file mancante è {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://servizi.comune.roma.it/stradario" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://servizi.comune.roma.it/stradario" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Interrogazione stradario comunale</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://servizi.comune.roma.it/stradario">
+      <s:element name="CercaStradaDalNome">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CercaStradaDalNomeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CercaStradaDalNomeResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogHeader" type="tns:LogHeader" />
+      <s:complexType name="LogHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LogGuid" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="CercaStradaDalNomeeDalCivico">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Civico" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="s:unsignedByte" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CercaStradaDalNomeeDalCivicoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CercaStradaDalNomeeDalCivicoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ElencoStrade">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DescrizioneParziale" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ElencoStradeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ElencoStradeResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CercaStradaDalCodice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Codice" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CercaStradaDalCodiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CercaStradaDalCodiceResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CercaStradaDalNomeSoapIn">
+    <wsdl:part name="parameters" element="tns:CercaStradaDalNome" />
+  </wsdl:message>
+  <wsdl:message name="CercaStradaDalNomeSoapOut">
+    <wsdl:part name="parameters" element="tns:CercaStradaDalNomeResponse" />
+  </wsdl:message>
+  <wsdl:message name="CercaStradaDalNomeLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="CercaStradaDalNomeeDalCivicoSoapIn">
+    <wsdl:part name="parameters" element="tns:CercaStradaDalNomeeDalCivico" />
+  </wsdl:message>
+  <wsdl:message name="CercaStradaDalNomeeDalCivicoSoapOut">
+    <wsdl:part name="parameters" element="tns:CercaStradaDalNomeeDalCivicoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CercaStradaDalNomeeDalCivicoLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="ElencoStradeSoapIn">
+    <wsdl:part name="parameters" element="tns:ElencoStrade" />
+  </wsdl:message>
+  <wsdl:message name="ElencoStradeSoapOut">
+    <wsdl:part name="parameters" element="tns:ElencoStradeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ElencoStradeLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:message name="CercaStradaDalCodiceSoapIn">
+    <wsdl:part name="parameters" element="tns:CercaStradaDalCodice" />
+  </wsdl:message>
+  <wsdl:message name="CercaStradaDalCodiceSoapOut">
+    <wsdl:part name="parameters" element="tns:CercaStradaDalCodiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CercaStradaDalCodiceLogHeader">
+    <wsdl:part name="LogHeader" element="tns:LogHeader" />
+  </wsdl:message>
+  <wsdl:portType name="StradarioSoap">
+    <wsdl:operation name="CercaStradaDalNome">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cerca una strada a partire dalla denominazione</wsdl:documentation>
+      <wsdl:input message="tns:CercaStradaDalNomeSoapIn" />
+      <wsdl:output message="tns:CercaStradaDalNomeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CercaStradaDalNomeeDalCivico">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cerca una strada a partire dalla denominazione e dal civico definizione puntuale</wsdl:documentation>
+      <wsdl:input message="tns:CercaStradaDalNomeeDalCivicoSoapIn" />
+      <wsdl:output message="tns:CercaStradaDalNomeeDalCivicoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ElencoStrade">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ricerca su stradario per il Portale comunale [ricerca parziale: inserire inizio della denominazione]</wsdl:documentation>
+      <wsdl:input message="tns:ElencoStradeSoapIn" />
+      <wsdl:output message="tns:ElencoStradeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CercaStradaDalCodice">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cerca una strada a partire dal codice di classificazione comunale [codice a 6 cifre]</wsdl:documentation>
+      <wsdl:input message="tns:CercaStradaDalCodiceSoapIn" />
+      <wsdl:output message="tns:CercaStradaDalCodiceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StradarioSoap" type="tns:StradarioSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CercaStradaDalNome">
+      <soap:operation soapAction="http://servizi.comune.roma.it/stradario/CercaStradaDalNome" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CercaStradaDalNomeLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CercaStradaDalNomeeDalCivico">
+      <soap:operation soapAction="http://servizi.comune.roma.it/stradario/CercaStradaDalNomeeDalCivico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CercaStradaDalNomeeDalCivicoLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ElencoStrade">
+      <soap:operation soapAction="http://servizi.comune.roma.it/stradario/ElencoStrade" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ElencoStradeLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CercaStradaDalCodice">
+      <soap:operation soapAction="http://servizi.comune.roma.it/stradario/CercaStradaDalCodice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CercaStradaDalCodiceLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StradarioSoap12" type="tns:StradarioSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CercaStradaDalNome">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/stradario/CercaStradaDalNome" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CercaStradaDalNomeLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CercaStradaDalNomeeDalCivico">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/stradario/CercaStradaDalNomeeDalCivico" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CercaStradaDalNomeeDalCivicoLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ElencoStrade">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/stradario/ElencoStrade" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ElencoStradeLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CercaStradaDalCodice">
+      <soap12:operation soapAction="http://servizi.comune.roma.it/stradario/CercaStradaDalCodice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CercaStradaDalCodiceLogHeader" part="LogHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Stradario">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Interrogazione stradario comunale</wsdl:documentation>
+    <wsdl:port name="StradarioSoap" binding="tns:StradarioSoap">
+      <soap:address location="http://10.173.2.131/pa/papublic/pri/stradario/stradario.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StradarioSoap12" binding="tns:StradarioSoap12">
+      <soap12:address location="http://10.173.2.131/pa/papublic/pri/stradario/stradario.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

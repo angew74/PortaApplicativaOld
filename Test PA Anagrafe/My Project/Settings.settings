@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="Test_PA_Anagrafe_Stradario_Stradario" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.173.2.131/pa/papublic/pri/stradario/stradario.asmx</Value>
+    </Setting>
+    <Setting Name="Test_PA_Anagrafe_PAVerifiche1_NVA" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/PA/pri/Verifiche/nva.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
